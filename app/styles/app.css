@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tokens */
+/* Tokens - The Port Brand */
 :root {
-  --color-primary: 20 20 20; /* Text, buttons, etc. */
-  --color-contrast: 250 250 249; /* Backgrounds, borders, etc. */
-  --color-accent: 191 72 0; /* Labels like "On sale" */
+  --color-primary: 15 23 42; /* Slate-900 - Deep navy text */
+  --color-contrast: 248 250 252; /* Slate-50 - Light backgrounds */
+  --color-accent: 249 115 22; /* Orange-500 - Curiosity orange */
+  --color-port-blue: 30 64 175; /* Blue-800 - Deep ocean blue */
+  --color-port-teal: 20 184 166; /* Teal-500 - Discovery teal */
   --font-size-fine: 0.75rem; /* text-xs */
   --font-size-copy: 1rem; /* text-base */
   --font-size-lead: 1.125rem; /* text-lg */
@@ -36,9 +38,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: 250 250 250;
-    --color-contrast: 32 33 36;
-    --color-accent: 235 86 40;
+    --color-primary: 241 245 249; /* Slate-100 */
+    --color-contrast: 15 23 42; /* Slate-900 */
+    --color-accent: 251 146 60; /* Orange-400 */
+    --color-port-blue: 59 130 246; /* Blue-500 */
+    --color-port-teal: 45 212 191; /* Teal-400 */
   }
 }
 

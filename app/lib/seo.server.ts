@@ -31,9 +31,9 @@ function root({
 }): SeoConfig {
   return {
     title: shop?.name,
-    titleTemplate: '%s | Hydrogen Demo Store',
-    description: truncate(shop?.description ?? ''),
-    handle: '@shopify',
+    titleTemplate: '%s | The Port - Curiosity Marketplace',
+    description: truncate(shop?.description ?? 'Explore curiosity-driven products at The Port'),
+    handle: '@askpuddle',
     url,
     robots: {
       noIndex: false,
@@ -45,11 +45,8 @@ function root({
       name: shop.name,
       logo: shop.brand?.logo?.image?.url,
       sameAs: [
-        'https://twitter.com/shopify',
-        'https://facebook.com/shopify',
-        'https://instagram.com/shopify',
-        'https://youtube.com/shopify',
-        'https://tiktok.com/@shopify',
+        'https://twitter.com/askpuddle',
+        'https://instagram.com/askpuddle',
       ],
       url,
       potentialAction: {
@@ -64,8 +61,8 @@ function root({
 function home({url}: {url: Request['url']}): SeoConfig {
   return {
     title: 'Home',
-    titleTemplate: '%s | Hydrogen Demo Store',
-    description: 'The best place to buy snowboarding products',
+    titleTemplate: '%s | The Port',
+    description: 'Discover curiosity-driven products that inspire wonder and learning',
     url,
     robots: {
       noIndex: false,

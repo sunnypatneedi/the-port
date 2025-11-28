@@ -11,6 +11,12 @@ export default {
         contrast: 'rgb(var(--color-contrast) / <alpha-value>)',
         notice: 'rgb(var(--color-accent) / <alpha-value>)',
         shopPay: 'rgb(var(--color-shop-pay) / <alpha-value>)',
+        // The Port brand colors
+        port: {
+          blue: 'rgb(var(--color-port-blue) / <alpha-value>)',
+          teal: 'rgb(var(--color-port-teal) / <alpha-value>)',
+          orange: 'rgb(var(--color-accent) / <alpha-value>)',
+        },
       },
       screens: {
         sm: '32em',

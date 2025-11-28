@@ -1,58 +1,144 @@
-# Hydrogen template: Demo Store
+# The Port - Curiosity Marketplace
 
-Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [Remix](https://remix.run/), Shopify’s full stack web framework. This template contains a **full-featured setup** of components, queries and tooling to get started with Hydrogen. It is deployed at [hydrogen.shop](https://hydrogen.shop)
+**The Port** is a Shopify Hydrogen storefront for curiosity-related merchandise, powered by Shopify's headless commerce stack and deployed on Oxygen.
 
-[Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
-[Get familiar with Remix](https://remix.run/docs/en/v1)
+## Tech Stack
 
-## What's included
+- **Framework**: [Hydrogen](https://shopify.dev/custom-storefronts/hydrogen) (React + Remix)
+- **Hosting**: [Oxygen](https://shopify.dev/custom-storefronts/oxygen) (Shopify's edge hosting)
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
 
-- Remix
-- Hydrogen
-- Oxygen
-- Shopify CLI
-- ESLint
-- Prettier
-- GraphQL generator
-- TypeScript and JavaScript flavors
-- Tailwind CSS (via PostCSS)
-- Full-featured setup of components and routes
+## Quick Start
 
-## Getting started
+### Prerequisites
 
-**Requirements:**
+- Node.js 20+
+- npm 8.19+
+- A Shopify store on Basic plan or higher
+- Hydrogen sales channel installed in Shopify Admin
 
-- Node.js version 18.0.0 or higher
+### 1. Install Dependencies
 
 ```bash
-npm create @shopify/hydrogen@latest -- --template demo-store
+npm install
 ```
 
-Remember to update `.env` with your shop's domain and Storefront API token!
-
-## Building for production
+### 2. Connect to Your Shopify Store
 
 ```bash
-npm run build
+# Authenticate with Shopify (opens browser)
+shopify auth login
+
+# Link this project to your store
+npx shopify hydrogen link
+
+# Pull environment variables
+npx shopify hydrogen env pull
 ```
 
-## Local development
+### 3. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-## Setup for using Customer Account API (`/account` section)
+Visit http://localhost:3000 to see your storefront.
 
-### Setup public domain using ngrok
+## Deployment
 
-1. Setup a [ngrok](https://ngrok.com/) account and add a permanent domain (ie. `https://<your-ngrok-domain>.app`).
-1. Install the [ngrok CLI](https://ngrok.com/download) to use in terminal
-1. Start ngrok using `ngrok http --domain=<your-ngrok-domain>.app 3000`
+### Manual Deploy to Oxygen
 
-### Include public domain in Customer Account API settings
+```bash
+npx shopify hydrogen deploy
+```
 
-1. Go to your Shopify admin => `Hydrogen` or `Headless` app/channel => Customer Account API => Application setup
-1. Edit `Callback URI(s)` to include `https://<your-ngrok-domain>.app/account/authorize`
-1. Edit `Javascript origin(s)` to include your public domain `https://<your-ngrok-domain>.app` or keep it blank
-1. Edit `Logout URI` to include your public domain `https://<your-ngrok-domain>.app` or keep it blank
+Choose "Preview" for testing, or "Production" for the live site.
+
+### CI/CD with GitHub
+
+1. Go to Shopify Admin → Sales channels → Hydrogen
+2. Open your storefront
+3. Click "Connect repository"
+4. Connect to `sunnypatneedi/the-port`
+5. Map branches:
+   - `main` → Production
+   - `dev` → Preview
+
+Now pushes auto-deploy:
+- Push to `dev` → Preview environment
+- Merge to `main` → Production
+
+## Project Structure
+
+```
+the-port/
+├── app/
+│   ├── components/     # Reusable UI components
+│   ├── data/           # Data fetching utilities
+│   ├── graphql/        # GraphQL queries/mutations
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── routes/         # Page routes (Remix file-based routing)
+│   ├── styles/         # CSS and fonts
+│   └── root.tsx        # Root layout
+├── public/             # Static assets
+├── server.ts           # Server entry point
+└── vite.config.ts      # Vite configuration
+```
+
+## Key Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home page |
+| `/products` | All products |
+| `/products/:handle` | Product detail |
+| `/collections` | All collections |
+| `/collections/:handle` | Collection page |
+| `/cart` | Shopping cart |
+| `/account` | Customer account |
+| `/search` | Search results |
+
+## Scripts
+
+```bash
+npm run dev        # Start dev server
+npm run build      # Production build
+npm run preview    # Preview production build
+npm run typecheck  # Run TypeScript checks
+npm run lint       # Run ESLint
+npm run format     # Format with Prettier
+```
+
+## Environment Variables
+
+Create a `.env` file (or run `npx shopify hydrogen env pull`):
+
+```env
+PUBLIC_STORE_DOMAIN=your-store.myshopify.com
+PUBLIC_STOREFRONT_API_TOKEN=your-token
+SESSION_SECRET=your-secret
+```
+
+## Customization
+
+### Branding
+
+- **Colors**: Edit `tailwind.config.js`
+- **Fonts**: Update `app/styles/custom-font.css`
+- **Logo**: Replace assets in `app/assets/`
+
+### Components
+
+Key components to customize:
+- `app/components/Hero.tsx` - Home hero section
+- `app/components/PageLayout.tsx` - Global header/footer
+- `app/components/ProductCard.tsx` - Product display
+
+## Resources
+
+- [Hydrogen Docs](https://shopify.dev/custom-storefronts/hydrogen)
+- [Remix Docs](https://remix.run/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Shopify Storefront API](https://shopify.dev/api/storefront)
